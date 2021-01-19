@@ -22,6 +22,7 @@ it("works when you click on the right arrow", function() {
   expect(queryByAltText("Photo by Richard Pasquarella on Unsplash")).not.toBeInTheDocument();
   expect(queryByAltText("Photo by Pratik Patel on Unsplash")).toBeInTheDocument();
 });
+
 it("works when you click on the left arrow", function() {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
   // move forward to #2
@@ -44,6 +45,24 @@ it("works when you click on the left arrow", function() {
   // expect the second image to show, but not the first
   expect(img2Alt).not.toBeInTheDocument();
   expect(img1Alt).toBeInTheDocument();
+});
+
+it("the left arrow is hidden on the first image", function() {
+  const { queryByTestId } = render(<Carousel />);
+  
+  const leftArrow = queryByTestId("left-arrow");
+  expect(leftArrow).not.toBeInTheDocument();
+});
+
+it("the right arrow is hidden on the last image", function() {
+  const { queryByTestId } = render(<Carousel />);
+
+  // Move to the last card
+  let rightArrow = queryByTestId("right-arrow");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+  
+  expect(rightArrow).not.toBeInTheDocument();
 });
 
 it("matches snapshot", function() {

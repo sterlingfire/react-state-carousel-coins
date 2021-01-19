@@ -2,6 +2,11 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 
+
+it("renders without error", function() {
+  const { container } = render(<Carousel />);
+});
+
 it("works when you click on the right arrow", function() {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
 
@@ -16,4 +21,9 @@ it("works when you click on the right arrow", function() {
   // expect the second image to show, but not the first
   expect(queryByAltText("Photo by Richard Pasquarella on Unsplash")).not.toBeInTheDocument();
   expect(queryByAltText("Photo by Pratik Patel on Unsplash")).toBeInTheDocument();
+});
+
+it("matches snapshot", function() {
+  const { container } = render(<Carousel />);
+  expect(container).toMatchSnapshot();
 });

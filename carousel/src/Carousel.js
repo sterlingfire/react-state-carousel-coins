@@ -5,6 +5,10 @@ import image2 from "./image2.jpg";
 import image3 from "./image3.jpg";
 import Card from "./Card";
 
+/* props: title, cardData
+ * state: cardIndex (CardIdx)
+ * App -> Carosel -> Card
+ */
 function Carousel(props) {
   const [cardIdx, setCardIdx] = useState(0);
   const card = props.cardData[cardIdx];

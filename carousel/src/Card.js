@@ -1,6 +1,11 @@
 import React from "react";
 import "./Card.css";
 
+/* Card component
+ * props: caption:string, src:url, currNum:number, totalNum:number
+ * App -> Carousel -> Card
+ *
+ */
 function Card(props) {
   return (
     <div className="Card">

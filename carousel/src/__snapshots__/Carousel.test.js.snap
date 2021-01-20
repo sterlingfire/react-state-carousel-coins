@@ -11,6 +11,10 @@ exports[`matches snapshot 1`] = `
     <div
       class="Carousel-main"
     >
+      <i
+        class="fas fa-chevron-circle-left fa-2x hidden"
+        data-testid="left-arrow"
+      />
       <div
         class="Card"
       >
@@ -35,7 +39,7 @@ exports[`matches snapshot 1`] = `
         </small>
       </div>
       <i
-        class="fas fa-chevron-circle-right fa-2x"
+        class="fas fa-chevron-circle-right fa-2x "
         data-testid="right-arrow"
       />
     </div>

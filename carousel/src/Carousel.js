@@ -5,10 +5,15 @@ import image2 from "./image2.jpg";
 import image3 from "./image3.jpg";
 import Card from "./Card";
 
-/* props: title, cardData
+/** Rendering Carousel
+ * props: title, cardData
+ * - cardData = [{caption, src}, ...]
+ * 
  * state: cardIndex (CardIdx)
- * App -> Carosel -> Card
- */
+ * 
+ * App -> Carousel -> Card
+ */ 
+
 function Carousel(props) {
   const [cardIdx, setCardIdx] = useState(0);
   const card = props.cardData[cardIdx];
@@ -16,32 +21,30 @@ function Carousel(props) {
   const goForward = () => setCardIdx(cardIdx + 1);
   const goBack = () => setCardIdx(cardIdx - 1);
 
+  // Less ternary inside the return is better 
+  const leftHidden = cardIdx === 0 ? "hidden": "";
+  const rightHidden = cardIdx === total - 1 ? "hidden": "";
+
   return (
     <div className="Carousel">
       <h1>{props.title}</h1>
       <div className="Carousel-main">
-        {cardIdx === 0 
-          ? null
-          : <i
-            className="fas fa-chevron-circle-left fa-2x"
+        <i
+            className={`fas fa-chevron-circle-left fa-2x ${leftHidden}`}
             onClick={goBack}
             data-testid="left-arrow"
-            />
-        }
+        />
         <Card
           caption={card.caption}
           src={card.src}
           currNum={cardIdx + 1}
           totalNum={total}
         />
-        {cardIdx === total - 1 
-          ? null 
-          : <i
-          className="fas fa-chevron-circle-right fa-2x"
+        <i
+          className={`fas fa-chevron-circle-right fa-2x ${rightHidden}`}
           onClick={goForward}
           data-testid="right-arrow"
         />
-        }
       </div>
     </div>
   );

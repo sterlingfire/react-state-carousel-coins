@@ -4,7 +4,12 @@ import Carousel from "./Carousel";
 
 
 it("renders without error", function() {
+  render(<Carousel />);
+});
+
+it("matches snapshot", function() {
   const { container } = render(<Carousel />);
+  expect(container).toMatchSnapshot();
 });
 
 it("works when you click on the right arrow", function() {
@@ -51,7 +56,10 @@ it("the left arrow is hidden on the first image", function() {
   const { queryByTestId } = render(<Carousel />);
   
   const leftArrow = queryByTestId("left-arrow");
-  expect(leftArrow).not.toBeInTheDocument();
+  expect(leftArrow).toHaveClass("hidden");
+
+  let rightArrow = queryByTestId("right-arrow");
+  expect(rightArrow).not.toHaveClass("hidden");
 });
 
 it("the right arrow is hidden on the last image", function() {
@@ -62,10 +70,8 @@ it("the right arrow is hidden on the last image", function() {
   fireEvent.click(rightArrow);
   fireEvent.click(rightArrow);
   
-  expect(rightArrow).not.toBeInTheDocument();
-});
+  expect(rightArrow).toHaveClass("hidden");
 
-it("matches snapshot", function() {
-  const { container } = render(<Carousel />);
-  expect(container).toMatchSnapshot();
+  const leftArrow = queryByTestId("left-arrow");
+  expect(leftArrow).not.toHaveClass("hidden");
 });

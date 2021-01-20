@@ -6,6 +6,7 @@ import {useState} from 'react';
  * state: countHeads:int, countTails:int
  * App -> CoinFlipper -> Coin
  */
+
 function CoinFlipper(){
   const [countHeads, setCountHeads] = useState(0);
   const [countTails, setCountTails] = useState(0);
@@ -26,8 +27,8 @@ function CoinFlipper(){
     <div>
       <h1>Flip A Coin!</h1>
       <Coin side={coinSide}/>
-      <button onClick={flipCoin}>Flip Me!</button>
-      <p>Out of {countHeads+countTails} flips, there have been {countHeads} heads, and {countTails} tails. </p>
+      <button className="CoinFlipper-button" onClick={flipCoin}>Flip Me!</button>
+      <p>Out of {countHeads+countTails} flips, there have been {countHeads} heads, and {countTails} tails.</p>
     </div>
   );
 }

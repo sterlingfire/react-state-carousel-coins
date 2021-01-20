@@ -21,3 +21,4 @@ function Coin({side}) {
 }
 
 export default Coin;
+export {SIDE_TO_URL};
